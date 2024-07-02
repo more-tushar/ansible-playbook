@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Install Apache HTTP Servers
+      yum:
+        name: httpd
+        state: latest
+    - name: Start the Apache HTTP Servers
+      service:
+        name: httpd
+        state: started
+        enabled: true
+...
+

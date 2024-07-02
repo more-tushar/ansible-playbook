@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: true
+  vars:
+    companyName: Expertit
+    location: Pune
+  tasks:
+    - name: Install Apache HTTP Servers
+      yum:
+        name: httpd
+        state: latest
+        
+    - name: Copy index.html
+      template:
+        src: index.html
+        dest: /var/www/html/index.html
+      notify:
+       - Re-Start the Apache Http Servers            
+       
+  handlers:
+    - name: Re-Start the Apache Http Servers
+      service:
+        name: httpd
+        state: restarted
+        enabled: true    
+...
+

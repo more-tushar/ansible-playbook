@@ -1,0 +1,14 @@
+---
+ - host: all
+   become: true
+   tasks:
+    - name: Install list of packages
+      yum: name: "name={{}}" state=present
+      with_items:
+       - git
+       - httpd
+       - zip
+       - unzip
+       - nano
+       - wget       
+...

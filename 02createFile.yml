@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: true
+  tasks:
+   - name: Create a File
+     file:
+      path: /tmp/tushar.sh
+      mode: 0777
+      owner: root
+      group: root
+      state: touch
+...
+

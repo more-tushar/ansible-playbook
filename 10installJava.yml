@@ -1,0 +1,27 @@
+---
+- hosts: all
+  bocome: true
+  tasks:
+   - name: install java
+     yum: name="{{JavaPackageVersion}}"
+     
+   - name: Get the java JavaPackageVersion
+     shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g'
+     register: javaVersion
+   - name: Display Java version
+     debug:
+     var: javaVersion.stdout
+ ...      
+   
+cerate a yml file in 
+/etc/ansible/group_vars
+
+sudo vi /etc/ansible/group_vars/appservers.yml 
+JavaPackageVersion: java-11-openjdk-devel
+
+sudo vi /etc/ansible/group_vars/dbservers.yml
+JavaPackageVersion: java-1.8.0-openjdk-devel 
+
+
+
+
